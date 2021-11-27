@@ -1,6 +1,6 @@
 const {DataTypes}=require('sequelize');
 
-module.export=(Sequelize)=>{
+module.exports=(Sequelize)=>{
     Sequelize.define('Genre',{
             Id:{
                 type:DataTypes.INTEGER
@@ -10,4 +10,4 @@ module.export=(Sequelize)=>{
                 allowNull:false
             }
     })
-}
+};
