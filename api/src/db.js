@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize,Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -38,5 +38,6 @@ Videogame.belongsToMany(Genre,{ through: 'Videogame_genre' })
 Genre.belongsToMany(Videogame,{ through: 'Videogame_genre' })
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  conn: sequelize,
+  Op     // para importart la conexión { conn } = require('./db.js');
 };
