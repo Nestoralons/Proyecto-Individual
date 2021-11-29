@@ -5,7 +5,7 @@ module.exports=(Sequelize)=>{
             Id:{
                 type:DataTypes.INTEGER
             },
-            Name:{
+            Genre:{
                 type:DataTypes.STRING,
                 allowNull:false
             }
