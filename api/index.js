@@ -33,26 +33,30 @@ conn.sync({ force: true }).then(() => {
 */
  axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
 .then(response=>{
- let a=response.data.results
+ let a=response.data.results;
   let base= a.map(elemento=>
-
+     
     Genre.create({
     Id:elemento.id,
-    Name:elemento.name
+    Genre:elemento.name
     })
   
     );
     Promise.all(base)
     .then(()=>{
-      console.log('Data creada')
+      console.log('Genres cargados exitosamente en la base de datos')
+      
     }
    
     )
+    
 })
 .catch(error=>{
   console.log(error)
-})
-
+ })
     
-  });
 });
+
+
+  });
+
