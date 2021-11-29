@@ -43,6 +43,7 @@ const getAllVideogamesquery = async(nombre)=>{
      Info=API;
     } 
    let b=Info.slice(0,15);
+   console.log(b.length)
     return b}catch(error){
         console.log(error)
     }
@@ -56,7 +57,7 @@ const getAllVideogamesquery = async(nombre)=>{
 router.get('/videogames',async(req,res)=>{
     try{
         const {name}=req.query;   
-        
+     
         if(name){
             let base=await getAllVideogamesquery(name);
             // let filtro=await videojuegos.filter(elemento=>elemento.Nombre.toLowerCase().includes(decodeURI(name.toLowerCase())));
@@ -82,7 +83,6 @@ router.get('/videogames/:id',async (req,res)=>{
         const {id}=req.params;
         if (!Number(id)){
          const Detalles =await getinfoDBDetallada(id);
-         console.log(Detalles)
          Detalles? res.status(200).send(Detalles): res.status(404).send('Algo ha salido mal, verifique el id suministrado')
         }
         if(Number(id)){

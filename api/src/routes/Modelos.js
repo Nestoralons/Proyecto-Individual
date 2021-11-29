@@ -73,8 +73,9 @@ module.exports={
             Imagen:elemento.background_image,
             }
         })
-        // const filtro=await mapeo.filter(elemento=>elemento.Genre.length>0)
-        return mapeo}catch(error){
+        const filtro=await mapeo.filter(elemento=>elemento.Nombre.toLowerCase().includes(nombre.toLowerCase())&&elemento.Genre.length>0)
+        
+        return filtro}catch(error){
             console.log(error)}
     },
     getinfoDBquery:async (nombre)=>{
@@ -114,7 +115,7 @@ module.exports={
         }
         },
     getInfoApiDetallada: async (id)=>{
-        const data= await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+       try{ const data= await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
         const detalles= {
             
                 ID:data.data.id,
@@ -130,9 +131,11 @@ module.exports={
          
         
         return detalles
-    },
+    }catch(error){
+        console.log(error)
+    }},
     getinfoDBDetallada:async (id)=>{
-    const mapeo= await Videogame.findAll({
+   try {const mapeo= await Videogame.findAll({
         where:{
             ID:id
         },
@@ -159,7 +162,9 @@ module.exports={
                 Plataformas:elemento.Plataformas}
     })
    
-    return filtro
+    return filtro[0]}catch(error){
+        console.log(error)
+    }
     },
     getGenres:async()=>{
         return await Genre.findAll({
