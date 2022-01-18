@@ -22,6 +22,8 @@ module.exports={
             Nombre:elemento.name,
             Genre:elemento.genres.map(element=>element.name),
             Imagen:elemento.background_image,
+            Rating:elemento.rating,
+            Plataformas:elemento.platforms.map(element=>element.name)
             }
         }) 
         result=[...result,...mapeo];
@@ -37,7 +39,7 @@ module.exports={
     getinfoDB:async ()=>{
     try {
         const Mapeo=await Videogame.findAll({
-        attributes:['Nombre','ID','Imagen'],
+        attributes:['Nombre','ID','Imagen','Rating','Plataformas'],
         include:{
         model:Genre,
         attributes:['Genre'],
@@ -55,6 +57,8 @@ module.exports={
             Nombre:elemento.Nombre,
             Genre:elemento.genres.map(element=>element.Genre),
             Imagen:elemento.Imagen,
+            Rating:elemento.Rating,
+            Plataformas:elemento.Plataformas
         }
     })
     return Result
@@ -71,6 +75,7 @@ module.exports={
             Nombre:elemento.name,
             Genre:elemento.genres.map(element=>element.name),
             Imagen:elemento.background_image,
+            
             }
         })
         const filtro=await mapeo.filter(elemento=>elemento.Nombre.toLowerCase().includes(nombre.toLowerCase())&&elemento.Genre.length>0)
